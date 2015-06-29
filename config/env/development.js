@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/ncrm-dev',
+	db: process.env.MONGOLAB_URI || 'mongodb://localhost/ncrm-dev',
 	app: {
 		title: 'nCRM - Development Environment'
 	},
