@@ -3,7 +3,7 @@
 module.exports = {
 	db: process.env.MONGOLAB_URI || 'mongodb://localhost/ncrm-dev',
 	app: {
-		title: 'nCRM - Development Environment'
+		title: 'QuikOpt - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

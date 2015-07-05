@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'nCRM',
+		title: 'QuikOpt',
 		description: 'Aplicacion ',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},

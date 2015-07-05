@@ -25,18 +25,13 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
-	firstName: {
+	fullName: {
 		type: String,
 		trim: true,
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your first name']
 	},
-	lastName: {
-		type: String,
-		trim: true,
-		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
-	},
+	
 	displayName: {
 		type: String,
 		trim: true
@@ -47,12 +42,6 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
 		match: [/.+\@.+\..+/, 'Please fill a valid email address']
-	},
-	username: {
-		type: String,
-		unique: 'testing error message',
-		required: 'Please fill in a username',
-		trim: true
 	},
 	password: {
 		type: String,
@@ -74,6 +63,9 @@ var UserSchema = new Schema({
 			enum: ['user', 'admin']
 		}],
 		default: ['user']
+	},
+	profile: {
+		
 	},
 	updated: {
 		type: Date
@@ -142,5 +134,6 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 		}
 	});
 };
+
 
 mongoose.model('User', UserSchema);
