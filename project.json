@@ -24,11 +24,13 @@
     "bower_components",
     "**.xproj",
     "**.user",
-    "**.vspscc"
+    "**.vspscc",
+    ".git"
   ],
   "exclude": [
     "wwwroot",
     "node_modules",
-    "bower_components"
+    "bower_components",
+    ".git"
   ]
 }
