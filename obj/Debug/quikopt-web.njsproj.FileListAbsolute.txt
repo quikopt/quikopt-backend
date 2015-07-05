@@ -1,1 +1,0 @@
-D:\Node\quikopt\quikopt-web\obj\Debug\quikopt-web.njsprojResolveAssemblyReference.cache
