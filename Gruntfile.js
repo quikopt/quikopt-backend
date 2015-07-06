@@ -1,4 +1,4 @@
-/// <binding BeforeBuild='clean, concat, jshint, uglify, copy' />
+/// <binding AfterBuild='all' ProjectOpened='watch' />
 /*
 This file in the main entry point for defining grunt tasks and using grunt plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkID=513275&clcid=0x409
@@ -34,16 +34,16 @@ module.exports = function (grunt) {
             }
         },
         copy: {
-            main: {
-                src: "App/*/*.html",
+            all: {
+                src: "App/**/*.html",
                 dest: "wwwroot/"
             },
         },
         watch: {
-            files: ["App/*.js"],
+            files: ["App/*.js", "App/**/*.js", "App/**/*.html"],
             tasks: ["all"]
         }
     });
 
-    grunt.registerTask("all", ['clean', 'concat', 'jshint', 'uglify', 'copy', 'watch']);
+    grunt.registerTask("all", ['clean', 'concat', 'jshint', 'uglify', 'copy']);
 };
