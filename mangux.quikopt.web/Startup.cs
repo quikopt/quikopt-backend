@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
+using Microsoft.Owin.Security.Twitter;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace mangux.quikopt.web
         public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
         public static GoogleOAuth2AuthenticationOptions googleAuthOptions { get; private set; }
         public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
+        public static TwitterAuthenticationOptions twitterAuthOptions { get; private set; }
+        
 
         public void Configuration(IAppBuilder app)
         {
@@ -57,8 +60,8 @@ namespace mangux.quikopt.web
             //Configure Google External Login
             googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "xxxxxx",
-                ClientSecret = "xxxxxx",
+                ClientId = "667365230941-7583a180030gerdjfmkd4ai1r21sk60c.apps.googleusercontent.com",
+                ClientSecret = "Z5CVgL04ML5tdfAKnL2pyJ3X",
                 Provider = new GoogleAuthProvider()
             };
             app.UseGoogleAuthentication(googleAuthOptions);
@@ -66,9 +69,19 @@ namespace mangux.quikopt.web
             //Configure Facebook External Login
             facebookAuthOptions = new FacebookAuthenticationOptions()
             {
-                AppId = "xxxxxx",
-                AppSecret = "xxxxxx",
+                AppId = "1602131330041169",
+                AppSecret = "5b6a4cda8fc3bfa9451e3d4192375706",
                 Provider = new FacebookAuthProvider()
+            };
+            app.UseFacebookAuthentication(facebookAuthOptions);
+
+            //Configure twitter External Login
+            twitterAuthOptions = new TwitterAuthenticationOptions()
+            {
+                ConsumerKey = "FTeZwkne0gahQb86DitDuK6cK",
+                ConsumerSecret = "AD7G5Dnlsx1TMqnzSC3j2W8jQ2uk24PcVFDSMDz1vk3iQqXY3q",
+                Provider = new TwitterAuthenticationProvider()
+                
             };
             app.UseFacebookAuthentication(facebookAuthOptions);
 

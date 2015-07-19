@@ -38,21 +38,21 @@ namespace mangux.quikopt.web.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(UserModel userModel)
         {
-             if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-             IdentityResult result = await _repo.RegisterUser(userModel);
+            IdentityResult result = await _repo.RegisterUser(userModel);
 
-             IHttpActionResult errorResult = GetErrorResult(result);
+            IHttpActionResult errorResult = GetErrorResult(result);
 
-             if (errorResult != null)
-             {
-                 return errorResult;
-             }
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
 
-             return Ok();
+            return Ok();
         }
 
         // GET api/Account/ExternalLogin
@@ -309,6 +309,10 @@ namespace mangux.quikopt.web.Controllers
             {
                 verifyTokenEndPoint = string.Format("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token={0}", accessToken);
             }
+            else if (provider == "Twitter")
+            {
+                verifyTokenEndPoint = string.Format("https://api.twitter.com/oauth/authenticate?oauth_token={0}", accessToken);
+            }
             else
             {
                 return null;
@@ -342,6 +346,17 @@ namespace mangux.quikopt.web.Controllers
                     parsedToken.app_id = jObj["audience"];
 
                     if (!string.Equals(Startup.googleAuthOptions.ClientId, parsedToken.app_id, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return null;
+                    }
+
+                }
+                else if (provider == "Twitter")
+                {
+                    parsedToken.user_id = jObj["user_id"];
+                    parsedToken.app_id = jObj["audience"];
+
+                    if (!string.Equals(Startup.twitterAuthOptions.ConsumerKey, parsedToken.app_id, StringComparison.OrdinalIgnoreCase))
                     {
                         return null;
                     }
